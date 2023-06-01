@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="us-ascii">
+    <title>Wyoming Bill of Sale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/static/css/styleXUMM.css">
+    <script src="https://unpkg.com/xrpl@2.0.0/build/xrpl-latest-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xrpl-client@2.0.4/dist/browser.min.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/xrpl-hooks@2.0.2/dist/xrpl-hooks.browser.min.js"></script>-->
+    <script src="https://xumm.app/assets/cdn/xumm-sdk.min.js"></script>
+    <script src="five-bells-condition.min.js"></script>
+    <script src="buffer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--<script src="https://xrpaddress.info/js/xrpl-tagged-address-codec-browser.js"></script>-->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+</head>
+<body style="background-color:rgb(231, 237, 231);">
+    <div style="font-size: 16px;" id="WyomingBillOfSaleForm">
+        <h2 style="color:rgb(5, 5, 5); font-size: 20px; text-align:center">Wyoming Motor Vehicle Bill of Sale</h2>
+        <br>
+        <p>This Bill of Sale has been made on 
+            <span class="field-container">
+              <strong><label id="saleDateDay" for="saleDateDayField"></label></strong>, 
+              <span class="input-container">
+                <input id="saleDateDayField" type="text" placeholder="Day Month" maxlength="15" />
+                <button class="button-save" id="saleDateDayButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            <span class="field-container">
+              <strong><label id="saleDateYear" for="saleDateYearField"></label></strong>, 
+              <span class="input-container">
+                <input id="saleDateYearField" type="text" placeholder="Year" maxlength="4" />
+                <button class="button-save" id="saleDateYearButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            in the County of
+            <span class="field-container">
+              <strong><label id="county" for="countyField"></label></strong>, 
+              <span class="input-container">
+                <input id="countyField" type="text" placeholder="County" maxlength="40" />
+                <button class="button-save" id="countyButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            in the <strong>State of Wyoming</strong> between the following parties:
+        </p>
+        <p>
+            <span class="field-container">
+              <strong><label id="buyerName" for="buyerNameField"></label></strong>
+              <span class="input-container">
+                <input id="buyerNameField" type="text" placeholder="Buyer Name" maxlength="40" />
+                <button class="button-save" id="buyerNameButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            <span class="field-container">
+              <strong><label id="buyerIndividualOrBusiness" for="buyerIndividualOrBusinessField"></label></strong>
+              <span class="input-container">
+                <input id="buyerIndividualOrBusinessField" type="text" placeholder="an individual or business" maxlength="60" />
+                <button class="button-save" id="buyerIndividualOrBusinessButton" type="button">save</button>
+                <button class="button-edit hidden" type="button">edit</button>
+              </span>
+            </span>
+            (hereinafter referred to as the "Buyer") with a mailing address of
+            <span class="field-container">
+              <strong><label id="buyerAddressStreet" for="buyerAddressStreetField"></label></strong>
+              <span class="input-container">
+                <input id="buyerAddressStreetField" type="text" placeholder="Buyer Street Address" maxlength="40" />
+                <button class="button-save" id="buyerAddressStreetButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            <span class="field-container">
+              <strong><label id="buyerAddressCity" for="buyerAddressCityField"></label></strong>
+              <span class="input-container">
+                <input id="buyerAddressCityField" type="text" placeholder="Buyer City" maxlength="40" />
+                <button class="button-save" id="buyerAddressCityButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            <span class="field-container">
+              <strong><label id="buyerAddressState" for="buyerAddressStateField"></label></strong>
+              <span class="input-container">
+                <input id="buyerAddressStateField" type="text" placeholder="Buyer State" maxlength="40" />
+                <button class="button-save" id="buyerAddressStateButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            <span class="field-container">
+              <strong><label id="buyerAddressZip" for="buyerAddressZipField"></label></strong>
+              <span class="input-container">
+                <input id="buyerAddressZipField" type="text" placeholder="Buyer Zip" maxlength="40" />
+                <button class="button-save" id="buyerAddressZipButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            <span class="field-container">
+              <strong><label id="buyerEmail" for="buyerEmailField"></label></strong>
+              <span class="input-container">
+                <input id="buyerEmailField" type="text" placeholder="Buyer Email" maxlength="40" />
+                <button class="button-save" id="buyerEmailButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            and,
+            <span class="field-container">
+              <strong><label id="sellerName" for="sellerNameField"></label></strong>
+              <span class="input-container">
+                <input id="sellerNameField" type="text" placeholder="Seller Name" maxlength="40" />
+                <button class="button-save" id="sellerNameButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            <span class="field-container">
+              <strong><label id="sellerIndividualOrBusiness" for="sellerIndividualOrBusinessField"></label></strong>
+              <span class="input-container">
+                <input id="sellerIndividualOrBusinessField" type="text" placeholder="an individual or business" maxlength="60" />
+                <button class="button-save" id="sellerIndividualOrBusinessButton" type="button">save</button>
+                <button class="button-edit hidden" type="button">edit</button>
+              </span>
+            </span>
+            (the "Seller") presently of 
+            <span class="field-container">
+              <strong><label id="sellerAddressStreet" for="sellerAddressStreetField"></label></strong>
+              <span class="input-container">
+                <input id="sellerAddressStreetField" type="text" placeholder="Seller Street Address" maxlength="40" />
+                <button class="button-save" id="sellerAddressStreetButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            <span class="field-container">
+              <strong><label id="sellerAddressCity" for="sellerAddressCityField"></label></strong>
+              <span class="input-container">
+                <input id="sellerAddressCityField" type="text" placeholder="Seller City" maxlength="40" />
+                <button class="button-save" id="sellerAddressCityButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            <span class="field-container">
+              <strong><label id="sellerAddressState" for="sellerAddressStateField"></label></strong>
+              <span class="input-container">
+                <input id="sellerAddressStateField" type="text" placeholder="Seller State" maxlength="40" />
+                <button class="button-save" id="sellerAddressStateButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            <span class="field-container">
+              <strong><label id="sellerAddressZip" for="sellerAddressZipField"></label></strong>
+              <span class="input-container">
+                <input id="sellerAddressZipField" type="text" placeholder="Seller Zip" maxlength="40" />
+                <button class="button-save" id="sellerAddressZipButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            <span class="field-container">
+              <strong><label id="sellerEmail" for="sellerEmailField"></label></strong>
+              <span class="input-container">
+                <input id="sellerEmailField" type="text" placeholder="Seller Email" maxlength="40" />
+                <button class="button-save" id="sellerEmailButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>.
+        </p>
+        <br>
+        <p align-text="left">The parties agree in exchange for possession and ownership of following motor vehicle (the "Vehicle"):
+        </p>
+        <p>Vehicle Type:
+        <span class="field-container">
+              <strong><label id="vehicleType" for="vehicleTypeField"></label></strong>
+              <span class="input-container">
+                <input id="vehicleTypeField" type="text" placeholder="Vehicle Type" maxlength="40" />
+                <button class="button-save" id="vehicleTypeButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            Make:
+            <span class="field-container">
+              <strong><label id="make" for="makeField"></label></strong>
+              <span class="input-container">
+                <input id="makeField" type="text" placeholder="Make" maxlength="40" />
+                <button class="button-save" id="makeButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            Model:
+            <span class="field-container">
+              <strong><label id="model" for="modelField"></label></strong>
+              <span class="input-container">
+                <input id="modelField" type="text" placeholder="Model" maxlength="40" />
+                <button class="button-save" id="modelButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            Body Type:
+            <span class="field-container">
+              <strong><label id="bodyType" for="bodyTypeField"></label></strong>
+              <span class="input-container">
+                <input id="bodyTypeField" type="text" placeholder="Body Type" maxlength="40" />
+                <button class="button-save" id="bodyTypeButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            Year:
+            <span class="field-container">
+              <strong><label id="year" for="yearField"></label></strong>
+              <span class="input-container">
+                <input id="yearField" type="text" placeholder="Year" maxlength="40" />
+                <button class="button-save" id="yearButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            Vehicle I.D. Number (VIN):
+            <span class="field-container">
+              <strong><label id="vin" for="vinField"></label></strong>
+              <span class="input-container">
+                <input id="vinField" type="text" placeholder="VIN" maxlength="40" />
+                <button class="button-save" id="vinButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            Odometer:
+            <span class="field-container">
+              <strong><label id="odometer" for="odometerField"></label></strong>
+              <span class="input-container">
+                <input id="odometerField" type="text" placeholder="Odometer" maxlength="40" />
+                <button class="button-save" id="odometerButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+        </p>
+        <p id="left">the Purchase Price the Buyer hereby pays to the Seller for said Vehicle is:
+            <span class="field-container">
+              <strong><label id="purchaseAmount" for="purchaseAmountField"></label></strong>
+              <span class="input-container">
+                <input id="purchaseAmountField" type="text" placeholder="Purchase Amount" maxlength="40" />
+                <button class="button-save" id="purchaseAmountButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span> = 
+            <strong><label id="xrpPurchaseAmountLabel"></label> 
+            XRP</strong> (the "<strong>Purchase Price</strong>"), wherein 1 XRP = <strong>$<label id="xrpusdLabel"></label></strong>, 
+            as further agreed via signing with their respective XRP Ledger Xumm wallet XRP addresses:
+        </p>
+        <ul>
+            <li>Seller XRP address:
+                <span class="field-container">
+                  <strong><label id="sellerXRPaddress" for="sellerXRPaddressField"></label></strong>
+                  <span class="input-container">
+                    <input id="sellerXRPaddressField" type="text" placeholder="Seller XRP Address" maxlength="40" />
+                    <button class="button-save" id="sellerXRPaddressButton" type="button">save</button>
+                    <button class="button-edit" type="button">edit</button>
+                  </span>
+                </span>
+            </li>
+            <li>Buyer XRP address: 
+                <span class="field-container">
+                  <strong><label id="buyerXRPaddress" for="buyerXRPaddressField"></label></strong>
+                  <span class="input-container">
+                    <input id="buyerXRPaddressField" type="text" placeholder="Buyer XRP Address" maxlength="40" />
+                    <button class="button-save" id="buyerXRPaddressButton" type="button">save</button>
+                    <button class="button-edit" type="button">edit</button>
+                  </span>
+                </span>
+            </li>
+        </ul>
+        <strong><label class="mt-3 h4" style="color: #bb0a1e;" id="notAuthorizedAddressLabel"></label></strong>
+        <button class="button-save" style="display: none;" id="notAuthorizedAddressLogoutButton">Logout</button>
+        <br>
+<!-- ========================================= removeEditButtons() ================================== -->
+        <p><button class="button-remove" id="remove-edit-buttons" type="button" onclick="removeEditButtons();">
+            Review All Fields and Click to Remove Edit Buttons Before Signing</button></p>
+<!-- ================================================================================================ -->
+        <p><strong><label id="signingSellerIndividualOrBusiness"></label></strong>
+            <span class="field-container">
+              <strong><label id="signingSellerAgentName" for="signingSellerAgentNameField"></label></strong>
+              <span class="input-container">
+                <input id="signingSellerAgentNameField" type="text" placeholder="Seller Agent Name" maxlength="40" />
+                <button class="button-save" id="signingSellerAgentNameButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            <span class="field-container">
+              <strong><label id="signingSellerAgentTitle" for="signingSellerAgentTitleField"></label></strong>
+              <span class="input-container">
+                <input id="signingSellerAgentTitleField" type="text" placeholder="Seller Agent Title" maxlength="40" />
+                <button class="button-save" id="signingSellerAgentTitleButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+        </p>
+        <ul>
+            <li><label id="step_1" style="display: block;">1. Seller to sign with Xumm wallet XRP address:</label>
+                <strong><label class="mt-3 h4" id="sub_1"></label></strong>
+                <button class="button-long" style="display: block;" id="sellerSignIn">Seller Xumm Wallet Signing</button>
+            </li>
+            <li>Seller:<strong><label id="signedBySellerAgentName" style="font-size: 22px; font-family: 'Brush Script MT'">__________</label>
+                <label id="signedBySellerAgentTitle" style="font-size: 22px; font-family:'Brush Script MT'"></label></strong>
+            </li>
+            <li>Date:<strong><label id="sellerSignedDateLabel">_______</label></strong>
+            </li>
+            <li><label id="step_2" style="display: block;">2. Seller Logout:</label>
+                <button class="button-XUMM" style="display: block;" id="sellerLogout">Seller Logout</button>
+            </li>
+        </ul>
+        <br>
+        <p><strong><label id="signingBuyerIndividualOrBusiness"></label></strong>
+            <span class="field-container">
+              <strong><label id="signingBuyerAgentName" for="signingBuyerAgentNameField"></label></strong>
+              <span class="input-container">
+                <input id="signingBuyerAgentNameField" type="text" placeholder="Buyer Agent Name" maxlength="40" />
+                <button class="button-save" id="signingBuyerAgentNameButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+            <span class="field-container">
+              <strong><label id="signingBuyerAgentTitle" for="signingBuyerAgentTitleField"></label></strong>
+              <span class="input-container">
+                <input id="signingBuyerAgentTitleField" type="text" placeholder="Buyer Agent Title" maxlength="40" />
+                <button class="button-save" id="signingBuyerAgentTitleButton" type="button">save</button>
+                <button class="button-edit" type="button">edit</button>
+              </span>
+            </span>
+        </p>
+        <ul>
+            <li><label id="step_3" style="display: block;">3. Buyer sign with Xumm wallet XRP address:</label>
+                <strong><label class="mt-3 h4" id="sub_2">(please sign after Seller logs out)</label></strong>
+                <button class="button-long" style="display: block;" id="buyerSignIn">Buyer Xumm Wallet Signing</button>
+            </li>
+            <li>Buyer:<strong><label id="signedByBuyerAgentName" style="font-size: 22px; font-family: 'Brush Script MT'">__________</label>
+                <label id="signedByBuyerAgentTitle" style="font-size: 22px; font-family:'Brush Script MT'"></label></strong>
+            </li>
+            <li>Date:<strong><label id="buyerSignedDateLabel">_______</label></strong>
+            </li>
+            <li><label id="step_4" style="display: block;">4. Buyer Payment of XRP Purchase Price:</label>
+                <strong><label id="paymentPaidLabel" style="font-size: 15px;"></label></strong>
+                <button class="button-XUMM" style="display: block;" id="buyerPaymentButton">Buyer Payment</button>
+            </li>
+            <li><label id="step_5" style="display: block;">5. Get Payment Transaction hash viewable in XRP Explorer Link:</label>
+                <button class="button-long" style="display: block;" id='getPaymentHashButton' onclick="getPaymentHash();">Get Payment XRPL tx.hash</button>
+            </li>
+            <li><strong><label id="paymentHashLabel" style="font-size: 15px;">tx.hash: </label></strong><br>
+            </li>
+            <li><strong><label id="paymentSignedDateLabel">Date:_________</label></strong>
+            </li>
+            <li><label id="step_6" style="display: block;">6. Buyer Logout:</label>
+                <button class="button-XUMM" style="display: block;" id="buyerLogout">Buyer Logout</button>
+            </li>
+        </ul>
+        <label id="step_7" style="display: block;">7. Generate PDF download</label>
+        <button class="button-XUMM" id='generatePDF' style="display: block;">Generate PDF</button>
+        
+        <h2 style="color:rgb(5, 5, 5); font-size: 32px; text-align:center">________________________________________________________________</h2>
+        <h3 style="color:rgb(5, 5, 5); font-size: 16px; text-align:center">Notary Statement</h3>
+        <ul>
+            <li>Before me, _________________________, a notary public in __________________________</li>
+            <li>County, State of _______________, personally appeared _____________________________</li>
+            <li>_______________________________________ on (date) _____________________________.</li>
+            <li>_________________________________ &emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13; _________________________________</li>
+            <li>&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13; Notary Public Signature 
+            &emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;
+            &emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13;&emsp13; Commission Expiration Date</li>
+        </ul>
+    </div>
+<!-- ====================== END OF SECURITY AGREEMENT FORM =================================== -->
+    <script>
+        // Add event listeners to all save buttons
+        var saveButtons = document.querySelectorAll('.button-save');
+        saveButtons.forEach(function(button) {
+          button.addEventListener('click', function() {
+            // Get the parent field-container element
+            var fieldContainer = button.closest('.field-container');
+            var inputValue;
+            var labelElement;
+            var inputElement = fieldContainer.querySelector('.input-container input');
+                inputValue = inputElement.value;
+                labelElement = fieldContainer.querySelector('label');
+                inputElement.style.display = 'none';
+           
+                // Set the label text to the input value
+                labelElement.textContent = inputValue;
+                button.style.display = 'none';
+                // Show the edit button
+                var editButton = fieldContainer.querySelector('.button-edit');
+                editButton.style.display = 'inline-block';
+          });
+        });
+    
+        // Add event listeners to all edit buttons
+        var editButtons = document.querySelectorAll('.button-edit');
+        editButtons.forEach(function(button) {
+          button.addEventListener('click', function() {
+            // Get the parent field-container element
+            var fieldContainer = button.closest('.field-container');
+            var labelElement;
+            // Get the input element and label element
+            var inputElement = fieldContainer.querySelector('.input-container input');
+            inputValue = inputElement.value;
+            labelElement = fieldContainer.querySelector('label');
+            inputElement.style.display = 'block';
+            
+            // Show the input element and save button
+            // inputElement.style.display = 'inline-block';
+            var saveButton = fieldContainer.querySelector('.button-save');
+            saveButton.style.display = 'inline-block';
+            
+            // Hide the edit button
+            button.style.display = 'none';
+          });
+        });
+    
+        function removeEditButtons() {
+          var editButtons = document.querySelectorAll('.button-edit');
+          editButtons.forEach(function(button) {
+            button.style.display = 'none';
+            document.getElementById('remove-edit-buttons').style.display = 'none'
+          });
+        }
+        
+        // Add event listener to the "Remove edit buttons" button
+        var removeButton = document.querySelector('#remove-edit-buttons');
+        removeButton.addEventListener('click', removeEditButtons);
+    </script>
+
+    <script>
+    var xrpusd;
+    var purchaseAmountField = 1;
+    var purchaseAmountXRP = 1;
+      async function XRPUSD() {
+          const api = new xrpl.Client('wss://xrplcluster.com');
+          await api.connect();
+          let response = await api.request({
+            "command": "account_lines",
+          	"account": "rXUMMaPpZqPutoRszR29jtC8amWq3APkx"
+          });
+          xrpusd = response.result.lines[0].limit;
+          purchaseAmountXRP = purchaseAmountField / xrpusd; // parseFloat("384.75a") number to string
+          console.log('1 XRP = $' + xrpusd);
+          document.getElementById('xrpusdLabel').innerText = xrpusd;
+        }
+    // XRPUSD();
+    </script>
+
+<!-- ====================== Xumm jsmodule-payload.html ======================================= -->
+    <script type="module">
+        import 'https://xumm.app/assets/cdn/xumm-oauth2-pkce.min.js?v=2.7.1'
+        const xumm = new XummPkce('c1a13cfd-3145-4c50-aab0-c4f7eab920be', {
+            implicit: true, // Implicit: allows to e.g. move from social browser to stock browser
+            redirectUrl: document.location.href + '?custom_state=test'
+        })
+        document.getElementById('sellerSignIn').onclick = () => xumm.authorize().catch(e => console.log('e', e))
+        document.getElementById('buyerSignIn').onclick = () => xumm.authorize().catch(e => console.log('e', e))
+        const signedIn = async () => {
+            const state = await xumm.state()
+            if (state?.me?.sub) {
+                if (state.me.sub === sellerXRPaddressField) {
+                    document.getElementById('sellerSignIn').style.display = 'none'
+                    document.getElementById('step_1').style.display = 'none'
+                    document.getElementById('sub_1').innerText = 'Signed with XRP Address: ' +  state.me.sub
+                    document.getElementById('signedBySellerAgentName').innerText = '_____ ' + signingSellerAgentNameField + ',';
+                    document.getElementById('signedBySellerAgentTitle').innerText = ' ' + signingSellerAgentTitleField + ' _____ ';sellerSignedDateLabel
+                    document.getElementById('sellerSignedDateLabel').innerText = ' ' + Date();
+                } else if (state.me.sub === buyerXRPaddressField) {
+                    document.getElementById('buyerSignIn').style.display = 'none'
+                    document.getElementById('step_3').style.display = 'none'
+                    document.getElementById('sub_2').innerText = 'Signed with XRP Address: ' +  state.me.sub
+                    document.getElementById('signedByBuyerAgentName').innerText = '_____ ' + signingBuyerAgentNameField + ',';
+                    document.getElementById('signedByBuyerAgentTitle').innerText = ' ' + signingBuyerAgentTitleField + ' _____ ';
+                    document.getElementById('buyerSignedDateLabel').innerText = ' ' + Date();
+                } else {
+                    document.getElementById('notAuthorizedAddressLogoutButton').style.display = 'block'
+                    alert("ADDRESS NOT AUTHORIZED TO SIGN THIS DOCUMENT"); 
+                    document.getElementById('notAuthorizedAddressLabel').innerText = 
+                    "xxxxxx ADDRESS NOT AUTHORIZED TO SIGN THIS DOCUMENT xxxxxx";
+                }
+            }
+        }
+// --------------------------------- purchaseAmountButton() --------------------------------------
+        document.getElementById('purchaseAmountButton').onclick = async () => {
+            const api = new xrpl.Client('wss://xrplcluster.com');
+          await api.connect();
+          let response = await api.request({
+            "command": "account_lines",
+          	"account": "rXUMMaPpZqPutoRszR29jtC8amWq3APkx"
+          });
+          xrpusd = response.result.lines[0].limit;
+          purchaseAmountXRP = purchaseAmountField / xrpusd; // parseFloat("384.75a") number to string
+          document.getElementById('xrpusdLabel').innerText = xrpusd;
+          console.log('Purchase amount = $' + purchaseAmountField + ' = ' + purchaseAmountXRP.toFixed(5) + ' XRP, ' + '1 XRP = $' + xrpusd);
+          document.getElementById('xrpPurchaseAmountLabel').innerText = purchaseAmountXRP.toFixed(5);
+        }
+// --------------------------------- buyerPaymentButton() --------------------------------------      
+         document.getElementById('buyerPaymentButton').onclick = async () => {
+            const decoder = new TextDecoder();
+            const encoder = new TextEncoder();
+            const message = 'Wyoming Motor Vehicle Bill of Sale Payment';
+            const messageAsUint8Array = encoder.encode(message);
+            const hex = Array.from(messageAsUint8Array)
+                .map(b => b.toString(16).padStart(2, '0'))
+                .join('')
+                .toUpperCase();
+            console.log('Wyoming Motor Vehicle Bill of Sale Payment hex: ' + hex);
+            
+            const purchaseAmountPayment = purchaseAmountXRP.toFixed(5) * 1_000_000;
+            console.log('purchaseAmountPayment: ' + purchaseAmountPayment);
+            console.log('sellerXRPaddressField: ' + sellerXRPaddressField);
+            
+            document.getElementById('step_4').style.display = 'none';
+            document.getElementById('paymentPaidLabel').innerText = 'Buyer Paid: $' + purchaseAmountField + ' = ' + purchaseAmountXRP.toFixed(5) + ' XRP';
+            document.getElementById('buyerPaymentButton').style.display = 'none';
+            
+            const { sdk } = await xumm.state()
+            const payload = await sdk.payload.create({
+                TransactionType: 'Payment',
+                Destination: sellerXRPaddressField,
+                Amount: String(purchaseAmountPayment),
+                Memos: [{   Memo: {
+                                MemoData: hex
+                            }
+                        }],
+            })
+            if (payload.pushed) {
+                alert('Payload `' + payload.uuid + '` pushed to your phone.')
+            } else {
+                // You can also render `payload.refs.qr_png` in your UI
+                alert('Payload not pushed, opening payload...')
+                window.open(payload.next.always)
+            }
+        }
+// --------------------------------- Logouts -----------------------------------    
+        document.getElementById('sellerLogout').onclick = () => {
+            xumm.logout()
+            document.getElementById('step_2').style.display = 'none';
+            document.getElementById('sellerLogout').style.display = 'none'
+        }
+        document.getElementById('buyerLogout').onclick = () => {
+            xumm.logout()
+            document.getElementById('step_6').style.display = 'none'
+            document.getElementById('buyerLogout').style.display = 'none'
+        }
+        document.getElementById('notAuthorizedAddressLogoutButton').onclick = () => {
+            xumm.logout()
+            document.getElementById('notAuthorizedAddressLogoutButton').style.display = 'none'
+            document.getElementById('notAuthorizedAddressLabel').innerText = ' '
+        }
+        xumm.on("error", error => console.log("error", error))
+        xumm.on("success", () => signedIn())
+        xumm.on("retrieved", () => signedIn())
+    </script>
+<!-- ==================== END Xumm jsmodule-payload.html =================== -->
+    <script>
+// ============================= getPaymentHash() =================================        
+        var paymentHash;
+        async function getPaymentHash() {
+          const api = new xrpl.Client('wss://xrplcluster.com');
+          await api.connect();
+           let response3 = await api.request({
+            "command": "account_tx",
+            "account": buyerXRPaddressField
+          });
+          paymentHash = response3.result.transactions[0].tx.hash;
+          console.log("Payment tx.hash: " + paymentHash);
+          const paymentHashLink = "https://bithomp.com/explorer/";
+          const xrpExplorerLink = paymentHashLink.concat(paymentHash);
+          
+          document.getElementById('step_5').style.display = 'none';
+          document.getElementById('getPaymentHashButton').style.display = 'none';
+          document.getElementById('paymentSignedDateLabel').innerText = "Date: " + Date();
+          
+          const link3 = document.createElement('a');
+          link3.href = xrpExplorerLink;
+          link3.target = "_blank";
+          link3.rel = "noopener noreferrer";
+          link3.innerText = paymentHash;
+          const label = document.getElementById('paymentHashLabel');
+          label.innerText = "tx.hash: ";
+          label.appendChild(link3);
+        }
+// ============================= generatePDF() =================================
+         document.getElementById('generatePDF').onclick = async () => {
+            document.getElementById('step_7').style.display = 'none';
+            document.getElementById('generatePDF').style.display = 'none';
+            var element = document.getElementById('WyomingBillOfSaleForm');
+            var opt = {
+                margin: 1,
+                filename: 'WyomingBillofSale.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, willReadFrequently: true },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' },
+                enableLinks: true,
+                pagebreak: { mode: ['avoid-all', 'css'], before: '.pagebreak' }
+            };
+            var worker = html2pdf().set(opt).from(element).outputPdf('bloburl');
+            html2pdf().set(opt).from(element).toPdf().save();
+        }
+// =========================== input text-area functions =======================
+        var sellerNameField;
+        function getSellerName() {
+            sellerNameField = document.getElementById('sellerNameField').value;
+            var sellerNameResult = document.getElementById('sellerNameResult');
+            var sellerNameButton = document.getElementById('sellerNameButton');
+            document.getElementById('sellerName').innerText = sellerNameField + ',';
+            document.getElementById('signingSellerIndividualOrBusiness').innerText = sellerNameField + ', authorized signing agent:';
+            document.getElementById('sellerNameButton').style.display = 'none';
+            document.getElementById('sellerNameField').style.display = 'none';
+        }
+    //   function getLenderIndividualOrBusiness() {
+            // document.getElementById('signingSellerIndividualOrBusiness').innerText = sellerNameField + ', authorized signing agent:';
+        // }
+        var buyerNameField;
+        function getBuyerName() {
+            buyerNameField = document.getElementById('buyerNameField').value;
+            var buyerNameResult = document.getElementById('buyerNameResult');
+            var buyerNameButton = document.getElementById('buyerNameButton');
+            document.getElementById('buyerName').innerText = buyerNameField + ',';
+            document.getElementById('signingBuyerIndividualOrBusiness').innerText = buyerNameField + ', authorized signing agent:';
+            document.getElementById('buyerNameButton').style.display = 'none';
+            document.getElementById('buyerNameField').style.display = 'none';
+        }
+        // function getBorrowerIndividualOrBusiness() {
+            // document.getElementById('signingBuyerIndividualOrBusiness').innerText = buyerNameField + ', authorized signing agent:';
+        // }
+        function getPurchaseAmount() {
+            purchaseAmountField = document.getElementById('purchaseAmountField').value;
+            var purchaseAmountResult = document.getElementById('purchaseAmountResult');
+            var purchaseAmountButton = document.getElementById('purchaseAmountButton');
+            document.getElementById('purchaseAmount').innerText = '$' + purchaseAmountField;
+            document.getElementById('purchaseAmountButton').style.display = 'none';
+            document.getElementById('purchaseAmountField').style.display = 'none';
+        }
+        function getSellerAddressStreet() {
+            var sellerAddressStreetField = document.getElementById('sellerAddressStreetField').value;
+            var sellerAddressStreetResult = document.getElementById('sellerAddressStreetResult');
+            var sellerAddressStreetButton = document.getElementById('sellerAddressStreetButton');
+            document.getElementById('sellerAddressStreet').innerText = sellerAddressStreetField + ',';
+            document.getElementById('sellerAddressStreetButton').style.display = 'none';
+            document.getElementById('sellerAddressStreetField').style.display = 'none';
+        }
+        function getSellerAddressCity() {
+            var sellerAddressCityField = document.getElementById('sellerAddressCityField').value;
+            var sellerAddressCityResult = document.getElementById('sellerAddressCityResult');
+            var sellerAddressCityButton = document.getElementById('sellerAddressCityButton');
+            document.getElementById('sellerAddressCity').innerText = sellerAddressCityField + ',';
+            document.getElementById('sellerAddressCityButton').style.display = 'none';
+            document.getElementById('sellerAddressCityField').style.display = 'none';
+        }
+        function getSellerAddressState() {
+            var sellerAddressStateField = document.getElementById('sellerAddressStateField').value;
+            var sellerAddressStateResult = document.getElementById('sellerAddressStateResult');
+            var sellerAddressStateButton = document.getElementById('sellerAddressStateButton');
+            document.getElementById('sellerAddressState').innerText = sellerAddressStateField;
+            document.getElementById('sellerAddressStateButton').style.display = 'none';
+            document.getElementById('sellerAddressStateField').style.display = 'none';
+        }
+        function getSellerAddressZip() {
+            var sellerAddressZipField = document.getElementById('sellerAddressZipField').value;
+            var sellerAddressZipResult = document.getElementById('sellerAddressZipResult');
+            var sellerAddressZipButton = document.getElementById('sellerAddressZipButton');
+            document.getElementById('sellerAddressZip').innerText = sellerAddressZipField + ',';
+            document.getElementById('sellerAddressZipButton').style.display = 'none';
+            document.getElementById('sellerAddressZipField').style.display = 'none';
+        }
+        function getSellerEmail() {
+            var sellerEmailField = document.getElementById('sellerEmailField').value;
+            var sellerEmailResult = document.getElementById('sellerEmailResult');
+            var sellerEmailButton = document.getElementById('sellerEmailButton');
+            document.getElementById('sellerEmail').innerText = sellerEmailField;
+            document.getElementById('sellerEmailButton').style.display = 'none';
+            document.getElementById('sellerEmailField').style.display = 'none';
+        }
+        var sellerXRPaddressField;
+        function getSellerXRPaddress() {
+            sellerXRPaddressField = document.getElementById('sellerXRPaddressField').value;
+            var sellerXRPaddressResult = document.getElementById('sellerXRPaddressResult');
+            var sellerXRPaddressButton = document.getElementById('sellerXRPaddressButton');
+            document.getElementById('sellerXRPaddress').innerText = sellerXRPaddressField;
+            document.getElementById('sellerXRPaddressButton').style.display = 'none';
+            document.getElementById('sellerXRPaddressField').style.display = 'none';
+        }
+        function getBuyerAddressStreet() {
+            var buyerAddressStreetField = document.getElementById('buyerAddressStreetField').value;
+            var buyerAddressStreetResult = document.getElementById('buyerAddressStreetResult');
+            var buyerAddressStreetButton = document.getElementById('buyerAddressStreetButton');
+            document.getElementById('buyerAddressStreet').innerText = buyerAddressStreetField + ',';
+            document.getElementById('buyerAddressStreetButton').style.display = 'none';
+            document.getElementById('buyerAddressStreetField').style.display = 'none';
+        }
+        function getBuyerAddressCity() {
+            var buyerAddressCityField = document.getElementById('buyerAddressCityField').value;
+            var buyerAddressCityResult = document.getElementById('buyerAddressCityResult');
+            var buyerAddressCityButton = document.getElementById('buyerAddressCityButton');
+            document.getElementById('buyerAddressCity').innerText = buyerAddressCityField + ',';
+            document.getElementById('buyerAddressCityButton').style.display = 'none';
+            document.getElementById('buyerAddressCityField').style.display = 'none';
+        }
+        function getBuyerAddressState() {
+            var buyerAddressStateField = document.getElementById('buyerAddressStateField').value;
+            var buyerAddressStateResult = document.getElementById('buyerAddressStateResult');
+            var buyerAddressStateButton = document.getElementById('buyerAddressStateButton');
+            document.getElementById('buyerAddressState').innerText = buyerAddressStateField;
+            document.getElementById('buyerAddressStateButton').style.display = 'none';
+            document.getElementById('buyerAddressStateField').style.display = 'none';
+        }
+        function getBuyerAddressZip() {
+            var buyerAddressZipField = document.getElementById('buyerAddressZipField').value;
+            var buyerAddressZipResult = document.getElementById('buyerAddressZipResult');
+            var buyerAddressZipButton = document.getElementById('buyerAddressZipButton');
+            document.getElementById('buyerAddressZip').innerText = buyerAddressZipField + ',';
+            document.getElementById('buyerAddressZipButton').style.display = 'none';
+            document.getElementById('buyerAddressZipField').style.display = 'none';
+        }
+        function getBuyerEmail() {
+            var buyerEmailField = document.getElementById('buyerEmailField').value;
+            var buyerEmailResult = document.getElementById('buyerEmailResult');
+            var buyerEmailButton = document.getElementById('buyerEmailButton');
+            document.getElementById('buyerEmail').innerText = buyerEmailField;
+            document.getElementById('buyerEmailButton').style.display = 'none';
+            document.getElementById('buyerEmailField').style.display = 'none';
+        }
+        var buyerXRPaddressField;
+        function getBuyerXRPaddress() {
+            buyerXRPaddressField = document.getElementById('buyerXRPaddressField').value;
+            var buyerXRPaddressResult = document.getElementById('buyerXRPaddressResult');
+            var buyerXRPaddressButton = document.getElementById('buyerXRPaddressButton');
+            document.getElementById('buyerXRPaddress').innerText = buyerXRPaddressField;
+            document.getElementById('buyerXRPaddressButton').style.display = 'none';
+            document.getElementById('buyerXRPaddressField').style.display = 'none';
+        }
+        var signingSellerAgentName;
+        function getSigningSellerAgentName() {
+            signingSellerAgentNameField = document.getElementById('signingSellerAgentNameField').value;
+            var signingSellerAgentNameResult = document.getElementById('signingSellerAgentNameResult');
+            var signingSellerAgentNameButton = document.getElementById('signingSellerAgentNameButton');
+            document.getElementById('signingSellerAgentName').innerText = signingSellerAgentNameField + ',';
+            document.getElementById('signingSellerAgentNameButton').style.display = 'none';
+            document.getElementById('signingSellerAgentNameField').style.display = 'none';
+        }
+        var signingSellerAgentTitle;
+        function getSigningSellerAgentTitle() {
+            signingSellerAgentTitleField = document.getElementById('signingSellerAgentTitleField').value;
+            var signingSellerAgentTitleResult = document.getElementById('signingSellerAgentTitleResult');
+            var signingSellerAgentTitleButton = document.getElementById('signingSellerAgentTitleButton');
+            document.getElementById('signingSellerAgentTitle').innerText = signingSellerAgentTitleField;
+            document.getElementById('signingSellerAgentTitleButton').style.display = 'none';
+            document.getElementById('signingSellerAgentTitleField').style.display = 'none';
+        }
+        var signingBuyerAgentName;
+        function getSigningBuyerAgentName() {
+            signingBuyerAgentNameField = document.getElementById('signingBuyerAgentNameField').value;
+            var signingBuyerAgentNameResult = document.getElementById('signingBuyerAgentNameResult');
+            var signingBuyerAgentNameButton = document.getElementById('signingBuyerAgentNameButton');
+            document.getElementById('signingBuyerAgentName').innerText = signingBuyerAgentNameField + ',';
+            document.getElementById('signingBuyerAgentNameButton').style.display = 'none';
+            document.getElementById('signingBuyerAgentNameField').style.display = 'none';
+        }
+        var signingBuyerAgentTitleField;
+        function getSigningBuyerAgentTitle() {
+            signingBuyerAgentTitleField = document.getElementById('signingBuyerAgentTitleField').value;
+            var signingBuyerAgentTitleResult = document.getElementById('signingBuyerAgentTitleResult');
+            var signingBuyerAgentTitleButton = document.getElementById('signingBuyerAgentTitleButton');
+            document.getElementById('signingBuyerAgentTitle').innerText = signingBuyerAgentTitleField;
+            document.getElementById('signingBuyerAgentTitleButton').style.display = 'none';
+            document.getElementById('signingBuyerAgentTitleField').style.display = 'none';
+        }
+        var vehicleType;
+        function getVehicleType() {
+            vehicleTypeField = document.getElementById('vehicleTypeField').value;
+            var vehicleTypeResult = document.getElementById('vehicleTypeResult');
+            var vehicleTypeButton = document.getElementById('vehicleTypeButton');
+            document.getElementById('vehicleType').innerText = ' ' + vehicleTypeField;
+            document.getElementById('vehicleTypeButton').style.display = 'none';
+            document.getElementById('vehicleTypeField').style.display = 'none';
+        }
+        var location;
+        function getLocation() {
+            locationField = document.getElementById('locationField').value;
+            var locationResult = document.getElementById('locationResult');
+            var locationButton = document.getElementById('locationButton');
+            document.getElementById('location').innerText = ' ' + locationField;
+            document.getElementById('locationButton').style.display = 'none';
+            document.getElementById('locationField').style.display = 'none';
+        }
+        var make;
+        function getMake() {
+            makeField = document.getElementById('makeField').value;
+            var makeResult = document.getElementById('makeResult');
+            var makeButton = document.getElementById('makeButton');
+            document.getElementById('make').innerText = ' ' + makeField;
+            document.getElementById('makeButton').style.display = 'none';
+            document.getElementById('makeField').style.display = 'none';
+        }
+        var model;
+        function getModel() {
+            modelField = document.getElementById('modelField').value;
+            var modelResult = document.getElementById('modelResult');
+            var modelButton = document.getElementById('modelButton');
+            document.getElementById('model').innerText = ' ' + modelField;
+            document.getElementById('modelButton').style.display = 'none';
+            document.getElementById('modelField').style.display = 'none';
+        }
+        var bodyType;
+        function getBodyType() {
+            bodyTypeField = document.getElementById('bodyTypeField').value;
+            var bodyTypeResult = document.getElementById('bodyTypeResult');
+            var bodyTypeButton = document.getElementById('bodyTypeButton');
+            document.getElementById('bodyType').innerText = ' ' + bodyTypeField;
+            document.getElementById('bodyTypeButton').style.display = 'none';
+            document.getElementById('bodyTypeField').style.display = 'none';
+        }
+        var year;
+        function getYear() {
+            yearField = document.getElementById('yearField').value;
+            var yearResult = document.getElementById('yearResult');
+            var yearButton = document.getElementById('yearButton');
+            document.getElementById('year').innerText = ' ' + yearField;
+            document.getElementById('yearButton').style.display = 'none';
+            document.getElementById('yearField').style.display = 'none';
+        }
+        var vin;
+        function getVIN() {
+            vinField = document.getElementById('vinField').value;
+            var vinResult = document.getElementById('vinResult');
+            var vinButton = document.getElementById('vinButton');
+            document.getElementById('vin').innerText = ' ' + vinField;
+            document.getElementById('vinButton').style.display = 'none';
+            document.getElementById('vinField').style.display = 'none';
+        }
+        var odometer;
+        function getOdometer() {
+            odometerField = document.getElementById('odometerField').value;
+            var odometerResult = document.getElementById('odometerResult');
+            var odometerButton = document.getElementById('odometerButton');
+            document.getElementById('odometer').innerText = ' ' + odometerField;
+            document.getElementById('odometerButton').style.display = 'none';
+            document.getElementById('odometerField').style.display = 'none';
+        }
+
+        sellerNameButton.addEventListener('click', getSellerName, false);
+        buyerNameButton.addEventListener('click', getBuyerName, false);
+        purchaseAmountButton.addEventListener('click', getPurchaseAmount, false);
+        sellerAddressStreetButton.addEventListener('click', getSellerAddressStreet, false);
+        sellerAddressCityButton.addEventListener('click', getSellerAddressCity, false);
+        sellerAddressStateButton.addEventListener('click', getSellerAddressState, false);
+        sellerAddressZipButton.addEventListener('click', getSellerAddressZip, false);
+        sellerEmailButton.addEventListener('click', getSellerEmail, false);
+        sellerXRPaddressButton.addEventListener('click', getSellerXRPaddress, false);
+        buyerAddressStreetButton.addEventListener('click', getBuyerAddressStreet, false);
+        buyerAddressCityButton.addEventListener('click', getBuyerAddressCity, false);
+        buyerAddressStateButton.addEventListener('click', getBuyerAddressState, false);
+        buyerAddressZipButton.addEventListener('click', getBuyerAddressZip, false);
+        buyerEmailButton.addEventListener('click', getBuyerEmail, false);
+        buyerXRPaddressButton.addEventListener('click', getBuyerXRPaddress, false);
+        signingSellerAgentNameButton.addEventListener('click', getSigningSellerAgentName, false);
+        signingSellerAgentTitleButton.addEventListener('click', getSigningSellerAgentTitle, false);
+        signingBuyerAgentNameButton.addEventListener('click', getSigningBuyerAgentName, false);
+        signingBuyerAgentTitleButton.addEventListener('click', getSigningBuyerAgentTitle, false);
+    
+        vehicleTypeButton.addEventListener('click', getVehicleType, false);
+        locationButton.addEventListener('click', getLocation, false);
+        makeButton.addEventListener('click', getMake, false);
+        modelButton.addEventListener('click', getModel, false);
+        bodyTypeButton.addEventListener('click', getBodyType, false);
+        yearButton.addEventListener('click', getYear, false);
+        vinButton.addEventListener('click', getVIN, false);
+        odometerButton.addEventListener('click', getOdometer, false);
+    </script><!-- ================ END Xumm jsmodule-payload.html ==================== -->
+</body>
+
+</html>
