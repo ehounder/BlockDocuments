@@ -1,6 +1,6 @@
-# BlockDocuments
+# BlockDocuments.org
 
-This project [blockdocuments.org](blockdocuments.org) is a Web3 user interface wherein users fill out standard business forms initially with Xumm wallet signing of transactions on the XRP Ledger global blockchain; thereafter generating a PDF of the contract instance with transaction hash links back to the blockchain. The significance is NFTs are running on hopeium that the technology may somehow progress from silly memes to some serious utility.
+This [blockdocuments.org](blockdocuments.org) project is a Web3 user interface wherein users fill out standard retail forms with Xumm wallet signing of transactions on the XRP Ledger global blockchain, generating a PDF of the transaction instance with `txhash` links back to the blockchain. The significance of the project being it upgrades NFTs from the level of silly memes to the level of serious AI quantum computer entangled algorithmic interference patterns.
 
 The present serious utility initiates with a Wyoming Motor Vehicle Bill of Sale, being one of the 16 states requiring a bill of sale. The workflow follows the traditional pattern where the buyer and seller verify the goods, each other's information, and agree on a price. They then sign the document with their Web3 wallets and if all looks good then the buyer transfers the funds same as it ever was.
 
