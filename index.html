@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>BlockDocuments</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/css/styleXUMM.css">
+    <script src="https://unpkg.com/xrpl@2.0.0/build/xrpl-latest-min.js"></script>
+    <script src="https://xumm.apcssp/assets/cdn/xumm-oauth2-pkce.min.js"></script>
+    <script src="https://xumm.app/assets/cdn/xumm-sdk.min.js"></script>
+    <!--<script src="https://xrpaddress.info/js/xrpl-tagged-address-codec-browser.js"></script>-->
+    <!--<script src="https://kit.fontawesome.com/54f4a89728.js" crossorigin="anonymous"></script>-->
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    
+    <script>
+        if (typeof module !== "undefined") {
+            const xrpl = require('xrpl')
+        }
+    </script>
+    <!-- Logging/debug messages in console -->
+    <script>localStorage.debug = '*'</script>
+</head>
+<body style="background-color:rgb(9, 116, 9);">
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo"><img class="left-fit" height="60px" width="360px"
+                src="/images/BlockDocuments_logo.png" alt="blockdocs.com">
+        </label>
+        <ul>
+            <li class="dropdown">
+                <a href="#">Documents<i class="fa fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#" id="docList1">Wyoming Motor Vehicle Bill of Sale</a>
+                    <a href="#" id="docList2">Vehicle Bill of Sale</a>
+                    <a href="#" id="docList3">Quit Claim Deed</a>
+                    <a href="#" id="docList4">Invoice</a>
+                    <!--<a href="#" id="docList5">Security Agreement</a>-->
+                </div>
+            <li class="dropdown">
+                <a href="#">Web3 Wallets<i class="fa fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="https://apps.apple.com/us/app/xumm-xrp-wallet/id1492302343" target="blank" rel="noopener noreferrer">Xumm Wallet</a>
+                    <a href="https://apps.apple.com/us/app/coinbase-wallet-nfts-crypto/id1278383455" target="blank" rel="noopener noreferrer">Coinbase Wallet</a>
+                </div>
+            <li class="dropdown">
+                <a href="#">XRP Explorer-Toolkit<i class="fa fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="https://bithomp.com/explorer/" target="blank" rel="noopener noreferrer">XRP Explorer</a>
+                    <a href="https://www.xrptoolkit.com/get-wallet" target="blank" rel="noopener noreferrer">XRP Toolkit</a>
+                </div>
+            <li class="dropdown">
+                <a href="#">Sologenic NFTs<i class="fa fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="https://sologenic.org/nft/0008000055955CE0E3A9981205C97D69C6DE242E70C6738A44B53FF000000003?" target="blank" rel="noopener noreferrer">Wyoming Bill of Sale</a>
+                    <!--<a href="https://sologenic.org/nft/0008138855955CE0E3A9981205C97D69C6DE242E70C6738A16E63C4600000001?" target="blank" rel="noopener noreferrer">Security Agreement 1</a>-->
+                    <!--<a href="https://www.legalzoom.com/" target="blank" rel="noopener noreferrer">LegalZoom</a>-->
+                    <!--<a href="https://www.rocketlawyer.com/" target="blank" rel="noopener noreferrer">RocketLawyer</a>-->
+                </div>
+            <li><a id="contact" href="https://www.buymeacoffee.com/dvhar19n" target="blank"
+                    rel="noopener noreferrer">Coffee</a></li>
+        </ul>
+    </nav>
+
+    <div class="column">
+<!-- ===================== WYOMING VEHICLE BILL OF SALE ==================== -->
+       <iframe id="docFrame1" class="center-fit groove"
+            style="width:900px; height:1500px; border: 8px solid white; display:none" src="/documents/WyomingBillofSale.html"
+            title="Wyoming Bill of Sale">
+        </iframe>
+<!-- ======================== VEHICLE BILL OF SALE ======================== -->
+        <iframe id="docFrame2" class="center-fit groove"
+            style="width:900px; height:1500px; border: 8px solid white; display:none" src="/documents/BillOfSale.html"
+            title="Vehicle Bill of Sale">
+        </iframe>
+    
+<!-- ======================== QUIT CLAIM DEED ======================== -->
+        <iframe id="docFrame3" class="center-fit groove"
+            style="width:900px; height:1500px; border: 8px solid white; display:none" src="/documents/QuitClaimDeed.html"
+            title="Quit Claim Deed">
+        </iframe>
+<!-- ======================== INVOICE ======================== -->
+        <iframe id="docFrame4" class="center-fit groove"
+            style="width:900px; height:1500px; border: 8px solid white; display:none" src="/documents/Invoice.html"
+            title="Invoice">
+        </iframe>
+<!-- ===================== SECURITY AGREEMENT ==================== -->
+        <iframe id="docFrame5" class="center-fit groove"
+            style="width:900px; height:10000px; border: 8px solid white;" src="/documents/SecurityAgreement.html"
+            title="Security Agreement">
+        </iframe>
+    </div>
+<!-- ========================== BACK TO THE TOP ============================ -->
+    <p style="color:White; text-align:center"><a href="#contact">- BACK TO THE TOP -</a></p>
+    <br><br>
+    
+    <script>
+      const dropdown = document.querySelector(".dropdown");
+      const dropdownContent = document.querySelector(".dropdown-content");
+      // Set the default iframe to display
+      const defaultFrame = document.getElementById("docFrame1");
+      defaultFrame.style.display = "block";
+    
+      // Add event listeners to the document links
+      const docList1 = document.getElementById("docList1");
+      const docList2 = document.getElementById("docList2");
+      const docList3 = document.getElementById("docList3");
+      const docList4 = document.getElementById("docList4");
+    //   const docList5 = document.getElementById("docList5");
+      
+      docList1.addEventListener("click", () => {
+        defaultFrame.style.display = "block";
+        document.getElementById("docFrame2").style.display = "none";
+        document.getElementById("docFrame3").style.display = "none";
+        document.getElementById("docFrame4").style.display = "none";
+      });
+      docList2.addEventListener("click", () => {
+        defaultFrame.style.display = "none";
+        document.getElementById("docFrame2").style.display = "block";
+        document.getElementById("docFrame3").style.display = "none";
+        document.getElementById("docFrame4").style.display = "none";
+      });
+      docList3.addEventListener("click", () => {
+        defaultFrame.style.display = "none";
+        document.getElementById("docFrame2").style.display = "none";
+        document.getElementById("docFrame3").style.display = "block";
+        document.getElementById("docFrame4").style.display = "none";
+      });
+      docList4.addEventListener("click", () => {
+        defaultFrame.style.display = "none";
+        document.getElementById("docFrame2").style.display = "none";
+        document.getElementById("docFrame3").style.display = "none";
+        document.getElementById("docFrame4").style.display = "block";
+      });
+    </script>
+</body>
+</html>
