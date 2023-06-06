@@ -8,7 +8,5 @@ Financial inclusion and unlocking XRP Ledger scaling is facilitated via the bloc
 
 Security involves refreshing the screen wiping out all the data, which only temporarily registers in users browsers to generate the PDF downloads.
 
-Hooks amendment ratification by the global XRP Ledger network, in particular the carbon (split-payments) and firewall (spam-blocking) hooks, would establish basis for monetization of the business model via partial payments for the downloads and NFTs.
-
 The ultimate significance of the project towards CBDCs is it validates the global finance leaders optimism towards some unknown advancement in NFTs from their initial level of cultural memes to the level of an NFT data information field of AI quantum computer entangled superpositioned spin-states algorithmic interference patterns of microeconomic dynamics integrating into the macroeconomic algorithmic interference patterns of interest.
 
