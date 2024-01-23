@@ -1,12 +1,8 @@
 # BlockDocuments.org
 
-This [blockdocuments.org](blockdocuments.org) project is a Web3 user interface wherein users fill out standard retail forms with Xumm wallet signing of transactions on the XRP Ledger global blockchain, generating a PDF of the transaction instance with `txhash` links back to the blockchain. 
+The blockchains that survive will be the ones people use. Furthermore, with the advent of AI the most successful blockchains will be those which optimize the human-AI web3-blockchain UI interactions.
 
-The present utility initiates with a Wyoming Motor Vehicle Bill of Sale, being one of the 16 states requiring a bill of sale. The UI workflow follows the traditional pattern where the buyer and seller verify material items, conditions, and identities of parties, agree on price in USD, sign the document, make payment in XRP at current XRPUSD rate and finally transfer material items same as it ever was.
+Initially the [blockdocuments.org](blockdocuments.org) standard retail form UI operates on the XRP Ledger via Xaman (formerly Xumm) wallet API signing for a Wyoming Motor Vehicle Bill of Sale generating a PDF download with txhash links. Users have the option to record the PDF→PNG-GIF converted images as Sologenic SOLO NFTs.
 
-Financial inclusion and unlocking XRP Ledger scaling is facilitated via the blockdocuments.org website requiring only a computer, phone, and moderate learning curve practice with microscopic transactions operating entirely through the browser via Javascript with the XRPL backend hence of lightest weight for the service provider networks.
-
-Security involves refreshing the screen wiping out all the data, which only temporarily registers in users browsers to generate the PDF downloads.
-
-The significance of the project towards CBDCs is it validates the global finance leaders optimism towards some unknown advancement in NFTs from their initial level of cultural memes to the level of an NFT data information field of AI quantum computer entangled superpositioned spin-states algorithmic interference patterns of microeconomic dynamics integrating into the macroeconomic algorithmic interference patterns of interest.
+Users manually enter in the retail form {key:value} pairs, however with the advent of AI and the Oraichain LLM data sources, future development is conceivable to be practical along the lines of AI-prompted AI-transacted retail forms of public record.
 
