@@ -36,9 +36,12 @@
     </script>
     <!-- Logging/debug messages in console -->
     <script>localStorage.debug = '*'</script>
+    
+    <link rel="stylesheet" href="navstyle.css">
+    <script src="https://kit.fontawesome.com/54f4a89728.js" crossorigin="anonymous"></script>
 </head>
 <body style="background-color:rgb(9, 116, 9);">
-    <nav>
+    <nav classname="w-full flex md:justify-center justify-between items-center p-4">
         <input type="checkbox" id="check">
         <label for="check" class="checkbtn">
             <i class="fas fa-bars"></i>
@@ -52,15 +55,17 @@
                 <div class="dropdown-content">
                     <a href="#" id="docList1">Wyoming Motor Vehicle Bill of Sale</a>
                     <a href="#" id="docList2">Vehicle Bill of Sale</a>
-                    <a href="#" id="docList3">Quit Claim Deed</a>
+                    <a href="#" id="docList3">Security Agreement</a>
                     <a href="#" id="docList4">Invoice</a>
+                    <a href="#" id="docList5">Quit Claim Deed</a>
                     <!--<a href="#" id="docList5">Security Agreement</a>-->
                 </div>
             <li class="dropdown">
                 <a href="#">Web3 Wallets<i class="fa fa-caret-down"></i></a>
                 <div class="dropdown-content">
-                    <a href="https://apps.apple.com/us/app/xumm-xrp-wallet/id1492302343" target="blank" rel="noopener noreferrer">Xumm Wallet</a>
-                    <a href="https://apps.apple.com/us/app/coinbase-wallet-nfts-crypto/id1278383455" target="blank" rel="noopener noreferrer">Coinbase Wallet</a>
+                    <a href="https://apps.apple.com/us/app/xumm-xrp-wallet/id1492302343" target="blank" rel="noopener noreferrer">Xaman Wallet</a>
+                    <a href="https://scan.orai.io/wallet/" target="blank" rel="noopener noreferrer">Orai Wallet</a>
+                    <a href="https://cloud.walletconnect.com/sign-in" target="blank" rel="noopener noreferrer">Wallet Connect</a>
                 </div>
             <li class="dropdown">
                 <a href="#">XRP Explorer-Toolkit<i class="fa fa-caret-down"></i></a>
@@ -72,7 +77,7 @@
                 <a href="#">Sologenic NFTs<i class="fa fa-caret-down"></i></a>
                 <div class="dropdown-content">
                     <a href="https://sologenic.org/nft/0008000055955CE0E3A9981205C97D69C6DE242E70C6738A44B53FF000000003?" target="blank" rel="noopener noreferrer">Wyoming Bill of Sale</a>
-                    <!--<a href="https://sologenic.org/nft/0008138855955CE0E3A9981205C97D69C6DE242E70C6738A16E63C4600000001?" target="blank" rel="noopener noreferrer">Security Agreement 1</a>-->
+                    <a href="https://sologenic.org/nft/0008138855955CE0E3A9981205C97D69C6DE242E70C6738A16E63C4600000001?" target="blank" rel="noopener noreferrer">Security Agreement</a>
                     <!--<a href="https://www.legalzoom.com/" target="blank" rel="noopener noreferrer">LegalZoom</a>-->
                     <!--<a href="https://www.rocketlawyer.com/" target="blank" rel="noopener noreferrer">RocketLawyer</a>-->
                 </div>
@@ -81,7 +86,7 @@
         </ul>
     </nav>
 
-    <div class="column">
+    <!--<div class="column">-->
 <!-- ===================== WYOMING VEHICLE BILL OF SALE ==================== -->
        <iframe id="docFrame1" class="center-fit groove"
             style="width:900px; height:1500px; border: 8px solid white; display:none" src="/documents/WyomingBillofSale.html"
@@ -92,23 +97,21 @@
             style="width:900px; height:1500px; border: 8px solid white; display:none" src="/documents/BillOfSale.html"
             title="Vehicle Bill of Sale">
         </iframe>
-    
-<!-- ======================== QUIT CLAIM DEED ======================== -->
+<!-- ===================== SECURITY AGREEMENT ==================== -->
         <iframe id="docFrame3" class="center-fit groove"
-            style="width:900px; height:1500px; border: 8px solid white; display:none" src="/documents/QuitClaimDeed.html"
-            title="Quit Claim Deed">
+            style="width:900px; height:10000px; border: 8px solid white; display:none" src="/documents/SecurityAgreement.html"
+            title="Security Agreement">
         </iframe>
 <!-- ======================== INVOICE ======================== -->
         <iframe id="docFrame4" class="center-fit groove"
             style="width:900px; height:1500px; border: 8px solid white; display:none" src="/documents/Invoice.html"
             title="Invoice">
         </iframe>
-<!-- ===================== SECURITY AGREEMENT ==================== -->
+<!-- ======================== QUIT CLAIM DEED ======================== -->
         <iframe id="docFrame5" class="center-fit groove"
-            style="width:900px; height:10000px; border: 8px solid white;" src="/documents/SecurityAgreement.html"
-            title="Security Agreement">
+            style="width:900px; height:1500px; border: 8px solid white; display:none" src="/documents/QuitClaimDeed.html"
+            title="Quit Claim Deed">
         </iframe>
-    </div>
 <!-- ========================== BACK TO THE TOP ============================ -->
     <p style="color:White; text-align:center"><a href="#contact">- BACK TO THE TOP -</a></p>
     <br><br>
@@ -125,31 +128,42 @@
       const docList2 = document.getElementById("docList2");
       const docList3 = document.getElementById("docList3");
       const docList4 = document.getElementById("docList4");
-    //   const docList5 = document.getElementById("docList5");
+      const docList5 = document.getElementById("docList5");
       
       docList1.addEventListener("click", () => {
         defaultFrame.style.display = "block";
         document.getElementById("docFrame2").style.display = "none";
         document.getElementById("docFrame3").style.display = "none";
         document.getElementById("docFrame4").style.display = "none";
+        document.getElementById("docFrame5").style.display = "none";
       });
       docList2.addEventListener("click", () => {
         defaultFrame.style.display = "none";
         document.getElementById("docFrame2").style.display = "block";
         document.getElementById("docFrame3").style.display = "none";
         document.getElementById("docFrame4").style.display = "none";
+        document.getElementById("docFrame5").style.display = "none";
       });
       docList3.addEventListener("click", () => {
         defaultFrame.style.display = "none";
         document.getElementById("docFrame2").style.display = "none";
         document.getElementById("docFrame3").style.display = "block";
         document.getElementById("docFrame4").style.display = "none";
+        document.getElementById("docFrame5").style.display = "none";
       });
       docList4.addEventListener("click", () => {
         defaultFrame.style.display = "none";
         document.getElementById("docFrame2").style.display = "none";
         document.getElementById("docFrame3").style.display = "none";
         document.getElementById("docFrame4").style.display = "block";
+        document.getElementById("docFrame5").style.display = "none";
+      });
+      docList5.addEventListener("click", () => {
+        defaultFrame.style.display = "none";
+        document.getElementById("docFrame2").style.display = "none";
+        document.getElementById("docFrame3").style.display = "none";
+        document.getElementById("docFrame4").style.display = "none";
+        document.getElementById("docFrame5").style.display = "block";
       });
     </script>
 </body>
